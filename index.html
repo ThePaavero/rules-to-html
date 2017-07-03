@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Rules to HTML</title>
+  <style>
+    body {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    label {
+      width: 48%;
+      display: block;
+    }
+
+    textarea {
+      display: block;
+      width: 100%;
+      height: 70vh;
+    }
+  </style>
+</head>
+<body>
+<label>
+  Plain Text
+  <textarea name='plain-text'></textarea>
+</label>
+<label>
+  HTML
+  <textarea name='html'></textarea>
+</label>
+<script>
+  (() => {
+
+    const plainTextTextarea = document.querySelector('textarea[name="plain-text"]')
+    const htmlTextarea = document.querySelector('textarea[name="html"]')
+    let plainTextString = ''
+
+    const renderToHtml = (plainTextInput) => {
+      const rows = plainTextInput.split('\n')
+      return rows.map(row => {
+        return parseRow(row)
+      }).join('\n')
+    }
+
+    const parseRow = (row) => {
+      row = row.trim()
+      if (row.match(/^[0-9]\.\s/g)) {
+        // If the row starts with a number followed by a period, make it a H3 heading.
+        return '<h3>' + row + '</h3>'
+      }
+      else if (row.match(/^[\u00C0-\u017Fa-zA-Z'][\u00C0-\u017Fa-zA-Z-' ]+[\u00C0-\u017Fa-zA-Z']?$/)) {
+        // If the row consists of all caps, make it a H2 heading.
+        return '<h2>' + row + '</h2>'
+      }
+      else if (row === '') {
+        // Empty line, return empty string.
+        return ''
+      }
+      // Default, return the row wrapped in a paragraph.
+      return '<p>' + row + '</p>'
+    }
+
+    const tick = () => {
+      plainTextString = plainTextTextarea.value
+      htmlTextarea.value = renderToHtml(plainTextString)
+    }
+
+    plainTextTextarea.addEventListener('keyup', e => {
+      tick()
+    })
+
+    tick()
+  })()
+</script>
+</body>
+</html>

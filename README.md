@@ -2,7 +2,7 @@
 
 ## The problem
 Always when building a campaign site, there will be a "rules" view of some sort.
-It's usually a MS Office document that follows a certain syntax.
+It's usually an MS Office document that follows a certain syntax.
 
 Manually translating the document to markup is a tedious task, especially since any
 legal piece of copy tends to get updated multiple times. 

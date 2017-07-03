@@ -77,24 +77,29 @@
       }
     }
 
+    const unListItemify = (str) => {
+      return str.replace(/\* /g, '')
+    }
+
     const parseRow = (previous, row, next) => {
       row = row.trim()
       switch (rowIsOfType(row)) {
         case 'h2':
           return `<h2>${row}</h2>`
-          break
         case 'h3':
           return `<h3>${row}</h3>`
-          break
         case 'empty':
           return ''
-          break
         case 'li':
-          return `<li>${row}</li>`
-          break
+          if (rowIsOfType(previous) !== 'li') {
+            return `<ul>\n  <li>${unListItemify(row)}</li>`
+          }
+          else if (rowIsOfType(next) !== 'li') {
+            return `  <li>${unListItemify(row)}</li>\n</ul>`
+          }
+          return `  <li>${unListItemify(row)}</li>`
         case 'p':
           return `<p>${row}</p>`
-          break
       }
     }
 

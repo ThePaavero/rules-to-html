@@ -16,3 +16,6 @@ The logic goes like this:
 1. If the row is in ALL CAPS, wrap it into an `<h2>`
 2. If the row starts with a number, followed by a period, wrap it into an `<h3>`
 3. All other rows are wrapped into a `<p>`
+
+## Todos
+* List items

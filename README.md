@@ -1,13 +1,13 @@
 # Quick Rules to HTML
 
-## The problem
+## The Problem
 Always when building a campaign site, there will be a "rules" view of some sort.
 It's usually an MS Office document that follows a certain syntax.
 
 Manually translating the document to markup is a tedious task, especially since any
 legal piece of copy tends to get updated multiple times. 
 
-## Solution
+## The Solution
 This tool allows you to copy the document as plain text into the left textarea and
 get a best guess generated string of markup in the right textarea.
 

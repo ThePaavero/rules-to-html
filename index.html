@@ -3,8 +3,15 @@
 <head>
   <meta charset='utf-8'>
   <title>Rules to HTML</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
   <style>
     body {
+      box-sizing: border-box;
+      padding: 20px 30px;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .tool-wrapper {
       display: flex;
       flex-wrap: nowrap;
       flex-direction: row;
@@ -24,14 +31,17 @@
   </style>
 </head>
 <body>
-<label>
-  Plain Text
-  <textarea name='plain-text'></textarea>
-</label>
-<label>
-  HTML
-  <textarea name='html'></textarea>
-</label>
+<h1>Quick rules document to HTML</h1>
+<div class='tool-wrapper'>
+  <label>
+    Plain Text
+    <textarea name='plain-text'></textarea>
+  </label>
+  <label>
+    HTML
+    <textarea name='html'></textarea>
+  </label>
+</div><!-- tool-wrapper -->
 <script>
   (() => {
 

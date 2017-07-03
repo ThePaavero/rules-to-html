@@ -54,22 +54,43 @@
       }).join('\n')
     }
 
+    const rowIsOfType = (rowString) => {
+      if (rowString.match(/^[0-9]\.\s/g)) {
+        return 'h3'
+      }
+      else if (rowString.match(/^[\u00C0-\u017Fa-zA-Z'][\u00C0-\u017Fa-zA-Z-' ]+[\u00C0-\u017Fa-zA-Z']?$/)) {
+        return 'h2'
+      }
+      else if (rowString.match(/^[\*]\s/g)) {
+        return 'li'
+      }
+      else if (rowString === '') {
+        return 'empty'
+      }
+      else {
+        return 'p'
+      }
+    }
+
     const parseRow = (row) => {
       row = row.trim()
-      if (row.match(/^[0-9]\.\s/g)) {
-        // If the row starts with a number followed by a period, make it a H3 heading.
-        return '<h3>' + row + '</h3>'
+      switch (rowIsOfType(row)) {
+        case 'h2':
+          return `<h2>${row}</h2>`
+          break
+        case 'h3':
+          return `<h3>${row}</h3>`
+          break
+        case 'empty':
+          return ''
+          break
+        case 'li':
+          return `<li>${row}</li>`
+          break
+        case 'p':
+          return `<p>${row}</p>`
+          break
       }
-      else if (row.match(/^[\u00C0-\u017Fa-zA-Z'][\u00C0-\u017Fa-zA-Z-' ]+[\u00C0-\u017Fa-zA-Z']?$/)) {
-        // If the row consists of all caps, make it a H2 heading.
-        return '<h2>' + row + '</h2>'
-      }
-      else if (row === '') {
-        // Empty line, return empty string.
-        return ''
-      }
-      // Default, return the row wrapped in a paragraph.
-      return '<p>' + row + '</p>'
     }
 
     const tick = () => {

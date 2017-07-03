@@ -44,10 +44,8 @@
 </div><!-- tool-wrapper -->
 <script>
   (() => {
-
     const plainTextTextarea = document.querySelector('textarea[name="plain-text"]')
     const htmlTextarea = document.querySelector('textarea[name="html"]')
-    let plainTextString = ''
 
     const renderToHtml = (plainTextInput) => {
       const rows = plainTextInput.split('\n')
@@ -75,8 +73,7 @@
     }
 
     const tick = () => {
-      plainTextString = plainTextTextarea.value
-      htmlTextarea.value = renderToHtml(plainTextString)
+      htmlTextarea.value = renderToHtml(plainTextTextarea.value)
     }
 
     plainTextTextarea.addEventListener('keyup', e => {

@@ -49,8 +49,13 @@
 
     const renderToHtml = (plainTextInput) => {
       const rows = plainTextInput.split('\n')
+      let currentIndex = 0
+      const rowsLength = rows.length
       return rows.map(row => {
-        return parseRow(row)
+        const previous = rows[(currentIndex + rowsLength - 1) % rowsLength]
+        const next = rows[(currentIndex + 1) % rowsLength]
+        currentIndex++
+        return parseRow(previous, row, next)
       }).join('\n')
     }
 
@@ -72,7 +77,7 @@
       }
     }
 
-    const parseRow = (row) => {
+    const parseRow = (previous, row, next) => {
       row = row.trim()
       switch (rowIsOfType(row)) {
         case 'h2':
